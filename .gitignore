@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+target/
+**/.mvn/wrapper/**
+*/!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+.DS_Store
