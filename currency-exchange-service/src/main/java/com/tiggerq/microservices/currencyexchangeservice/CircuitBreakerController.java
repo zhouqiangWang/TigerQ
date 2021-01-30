@@ -1,6 +1,8 @@
 package com.tiggerq.microservices.currencyexchangeservice;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +18,18 @@ public class CircuitBreakerController {
 
     @GetMapping("/sample-api")
 //    @Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")
-    @CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+//    @CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+//    @RateLimiter(name="default")
+    // 10s => 10000 calls
+    @Bulkhead(name="sample-api")
     public String sampleApi() {
         logger.info("sample API received.");
-        ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8080//dummy",
-                String.class);
+//        ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8080//dummy",
+//                String.class);
+//
+//        return forEntity.getBody();
 
-        return forEntity.getBody();
+        return "sample-api-response";
     }
 
     public String hardcodedResponse(Throwable exception) {
