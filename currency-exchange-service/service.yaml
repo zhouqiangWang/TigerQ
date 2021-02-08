@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2021-02-08T01:19:47Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: currency-exchange
+  name: currency-exchange
+  namespace: default
+  resourceVersion: "3622528"
+  selfLink: /api/v1/namespaces/default/services/currency-exchange
+  uid: 21b2f2ed-69f2-4b81-9c39-33a906720252
+spec:
+  clusterIP: 10.56.9.90
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 31381
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: currency-exchange
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 35.232.255.84
