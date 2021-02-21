@@ -23,7 +23,7 @@ spec:
         app: currency-conversion
     spec:
       containers:
-      - image: zhouqiangwang/currency-conversion-service:0.0.11-SNAPSHOT
+      - image: zhouqiangwang/currency-conversion-service:0.0.12-SNAPSHOT
         imagePullPolicy: IfNotPresent
         name: currency-conversion-service
       restartPolicy: Always
